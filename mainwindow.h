@@ -1,7 +1,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-
+#include "fontions.h"
 #include <QMainWindow>
+#include <QMessageBox>
 
 namespace Ui {
 class MainWindow;
@@ -20,6 +21,8 @@ private slots:
 
     void on_lineEdit_editingFinished();
 
+public slots:
+    void alert(const char * msg);
 private:
     Ui::MainWindow *ui;
 };
