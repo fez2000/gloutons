@@ -1,6 +1,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 #include "fontions.h"
+#include "welcome.h"
+#include "afficher.h"
 #include <QMainWindow>
 #include <QMessageBox>
 
@@ -14,6 +16,7 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = NULL);
+
     ~MainWindow();
 
 private slots:
@@ -23,8 +26,11 @@ private slots:
 
 public slots:
     void alert(const char * msg);
+    void get_started_info();
+
 private:
     Ui::MainWindow *ui;
+    Afficher *one;
 };
 
 #endif // MAINWINDOW_H

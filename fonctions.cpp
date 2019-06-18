@@ -1,17 +1,27 @@
 #include "fontions.h"
 std::vector<long> listPiece;
 std::string type("Frcfa");
-void load_piece(){
-listPiece.push_back(1);
-listPiece.push_back(5);
-listPiece.push_back(10);
-listPiece.push_back(15);
-listPiece.push_back(25);
-listPiece.push_back(50);
-listPiece.push_back(100);
-listPiece.push_back(500);
-}
+void load_config(){
+    std::ifstream userParam("config/userConfig.txt");
+    if(userParam){
+        char t[500];
+        userParam.getline(t,500);
+        int a;
+        while (userParam >> a) {
+            listPiece.push_back(a);
+        }
+    }else{
+        reset_config();
+    }
 
+}
+void reset_config(){
+    std::ofstream userParam("config/userConfig.txt");
+    userParam << "Francfa"<<std::endl<<"1"<<std::endl<<"5"<<std::endl<<"10"<<std::endl<<"15"<<std::endl<<"25"<<std::endl<<"50"<<std::endl<<"100";
+    ::listPiece.clear();
+    userParam.close();
+    load_config();
+}
 std::string get_type(){
     return ::type;
 }

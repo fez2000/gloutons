@@ -9,7 +9,8 @@
 
 long long convertion(const char * chaine);
 long num_piece_of(long long &somme, long piece);
-void load_piece();
+void load_config();
+void reset_config();
 size_t num_piece(void);
 long get_piece(size_t i);
 std::string cat_many(int nbCh, ...);

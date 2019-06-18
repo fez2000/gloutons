@@ -6,15 +6,31 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+
     ui->setupUi(this);
-    load_piece();
+    load_config();
+
+    this->ui->resultats->setFixedWidth(150*2+34);
+
+    QObject::connect(this->ui->actionQuitter, SIGNAL(triggered()), qApp, SLOT(quit()));
+
+    //Afficher affiche;
+    connect(this->ui->actionAfficher, SIGNAL(triggered()), this, SLOT(get_started_info()));
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
+void MainWindow::get_started_info()
+{
+    one = new Afficher(this);
+    one->setModal(true); // if you need it.
+    one->show();
 
+    //get_started one(this); //create a object directly
+    //one.exec(); //modal dialog
+}
 void MainWindow::on_calculer_clicked()
 {
    QString val = this->ui->lineEdit->text();
@@ -52,17 +68,18 @@ void MainWindow::on_calculer_clicked()
            this->ui->resultats->setRowCount(i);
 
             this->ui->resultats->setColumnCount(2);
-           this->ui->resultats->setHorizontalHeaderItem(0,new QTableWidgetItem(tr("PIECE").arg((0+1)*(0+1))));
-           this->ui->resultats->setHorizontalHeaderItem(1,new QTableWidgetItem(tr("NOMBRE").arg((0+1)*(1+1))));
-            this->ui->resultats->setColumnWidth(1,120);
-           this->ui->resultats->setColumnWidth(0,120);
+
+           this->ui->resultats->setHorizontalHeaderItem(0,new QTableWidgetItem(tr("PIECE").arg(QString((0+1)*(0+1)))));
+           this->ui->resultats->setHorizontalHeaderItem(1,new QTableWidgetItem(tr("NOMBRE").arg(QString((0+1)*(1+1)))));
+            this->ui->resultats->setColumnWidth(1,150);
+           this->ui->resultats->setColumnWidth(0,150);
 
            while (j <i) {
 
                this->ui->resultats->setRowHeight(j,50);
 
 
-               QTableWidgetItem *newItem = new QTableWidgetItem(tr(to_str<long>( get_piece(j)).c_str()).arg((j+1)*(0+1)));
+               QTableWidgetItem *newItem = new QTableWidgetItem(tr(to_str<long>( get_piece(j)).c_str()).arg( (j+1)*(0+1)));
                newItem->setTextAlignment(Qt::AlignCenter);
                this->ui->resultats->setItem(j, 0, newItem);
                QTableWidgetItem *newItem2 = new QTableWidgetItem(tr(to_str<long>(numByPiece[j]).c_str()).arg((j+1)*(1+1)));
