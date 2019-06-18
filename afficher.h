@@ -2,7 +2,7 @@
 #define AFFICHER_H
 
 #include <QDialog>
-
+#include <QListWidgetItem>
 namespace Ui {
 class Afficher;
 }

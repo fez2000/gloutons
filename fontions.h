@@ -10,6 +10,7 @@
 long long convertion(const char * chaine);
 long num_piece_of(long long &somme, long piece);
 void load_config();
+std::string to_str_p();
 void reset_config();
 size_t num_piece(void);
 long get_piece(size_t i);

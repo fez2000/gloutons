@@ -27,6 +27,16 @@ void reset_config(){
 std::string get_type(){
     return ::type;
 }
+std::string to_str_p(){
+    int i = ::listPiece.size(), j =0;
+    std::string p;
+    while (j < i) {
+        p += std::string(" ") + to_str(listPiece[j]);
+       j++;
+    }
+    return p;
+}
+
 size_t num_piece(){
    return  ::listPiece.size();
 }
